@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>User Profile</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/default.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/mainPageJS.js"></script>
+    <script src="js/jquery.tablesorter.min.js"></script>
+
+
+
+</head>
+
+<div id="dashboard-con">
+
+    <div class="row">
+        <div class="col-md-8 dashboard-left-cell">
+            <div class="admin-content-con">
+                <table  class="table table-condensed display tablesorter" id="playList" cellspacing="0" width="50%">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Ratings</th>
+                        <th>Quality</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            <!--<a class="label label-success " href="#" role="button">Dislike</a>-->
+                            <!--<a class="label label-success" href="#" role="button">Like</a>-->
+                            <span class="glyphicon glyphicon-thumbs-up pull-left" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-thumbs-down pull-right" aria-hidden="true"></span>
+                        </th>
+                        <th>
+                            <a class="label label-success " href="#" role="button">audio</a>
+                            <a class="label label-success " href="#" role="button">video</a>
+                            <a class="label label-success " href="#" role="button">content</a>
+                        </th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="playlistItems">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<body>
+
+</body>
+</html>

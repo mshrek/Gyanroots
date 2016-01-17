@@ -1,0 +1,28 @@
+{
+    "items": [
+        {
+            "src": "//ws-in.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=IN&source=ac&ref=tf_til&ad_type=product_link&tracking_id=wwwgyanrootsc-21&marketplace=amazon&region=IN&placement=9351103749&asins=9351103749&linkId=&show_border=true&link_opens_in_new_window=true",
+            "title": "Image 1"
+        },
+        {
+            "src": "https://images-eu.ssl-images-amazon.com/images/G/31/associates/network/08-ui-elements/btn-quick-tour-starburst._V138359900_.gif",
+            "title": "Image 2"
+        },
+        {
+            "src": "https://images-eu.ssl-images-amazon.com/images/G/31/associates/network/08-ui-elements/btn-quick-tour-starburst._V138359900_.gif",
+            "title": "Image 3"
+        },
+        {
+            "src": "https://images-eu.ssl-images-amazon.com/images/G/31/associates/network/08-ui-elements/btn-quick-tour-starburst._V138359900_.gif",
+            "title": "Image 4"
+        },
+        {
+            "src": "https://images-eu.ssl-images-amazon.com/images/G/31/associates/network/08-ui-elements/btn-quick-tour-starburst._V138359900_.gif",
+            "title": "Image 5"
+        },
+        {
+            "src": "https://images-eu.ssl-images-amazon.com/images/G/31/associates/network/08-ui-elements/btn-quick-tour-starburst._V138359900_.gif",
+            "title": "Image 6"
+        }
+    ]
+}
