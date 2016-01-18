@@ -35,7 +35,7 @@ else {
         while ($row = $results->fetch_assoc()) {
             echo "<tr class='sendIdOnClick'>";
             echo "<td data-sort-value='" . $row['sort_id'] . "'>" . $row['sort_id'] . "</td>";
-            echo "<td class='titleCol col-xs-3'>" . $row["title"] . "</td>";
+            echo "<td class='titleCol col-xs-3'><a>" . $row["title"] . "</a></td>";
             echo "<td>" . $row["duration"] . "</td>";
             echo "<td>";
             echo "<span col-xs-6 class='pull-left text-success'>" . $row["likes"] . "</span>";

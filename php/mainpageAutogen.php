@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by IntelliJ IDEA.
  * User: srikanthmannepalle

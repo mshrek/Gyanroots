@@ -49,7 +49,7 @@ else {
     }
     else {
         echo "record found, entered here"."\r\n";
-        $sqlquery2 = "UPDATE user_video_tbl SET $ratingfor = $value WHERE video_id = ".$videoID['video_id'].";";
+        $sqlquery2 = "UPDATE user_video_tbl SET $ratingfor = $value WHERE video_id = ".$videoID['video_id']." and user_id = ".$userID['user_id'].";";
         $result2 = $conn->query($sqlquery2);
         echo " update query = ".$sqlquery2."\r\n";
         echo " result of update query = ".$result2."\r\n";
@@ -61,6 +61,9 @@ else {
         echo "Updation was not done successfully for " . $ratingfor . " element "." and author id =".$authid."\r\n";
     }
 }
+$userIDResult->free();
+$videoIDResult->free();
+$checkRecordExistsQuery->free();
 $results->free();
 $conn->close();
 ?>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by IntelliJ IDEA.
  * User: srikanthmannepalle
@@ -28,7 +29,8 @@ else {
 //echo ($result);
     if ($results->num_rows > 0) {
         while ($rows = $results->fetch_assoc()) {
-            echo '<iframe src="http://www.youtube.com/embed/'.$rows['video_url'].'" id='.$_POST["authid"].' width="100%" height="289px" frameborder="1" allowfullscreen></iframe>';
+            echo '<iframe src="http://www.youtube.com/embed/'.$rows['video_url'].'" id='.$_POST["authid"].' width="100%" height="302px" frameborder="1" allowfullscreen></iframe>';
+            echo "<hr/>";
         }
     }
     else{

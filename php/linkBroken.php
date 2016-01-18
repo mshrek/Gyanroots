@@ -48,7 +48,7 @@ else {
     else {
         echo "record found, entered here"."\r\n";
         $sqlquery2 = "UPDATE user_video_tbl b right outer join video_tbl a on a.video_id = b.video_id
-                      SET b.broken_link_flag = $value WHERE a.sort_id = $elementID and a.author_id = $authid;";
+                      SET b.broken_link_flag = $value WHERE a.sort_id = $elementID and a.author_id = $authid and user_id = ".$userID['user_id'].";";
         $result2 = $conn->query($sqlquery2);
         echo " update query = ".$sqlquery2."\r\n";
         echo " result of update query = ".$result2."\r\n";

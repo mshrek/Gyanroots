@@ -179,7 +179,7 @@ if (typeof jQuery == "undefined"){
         });
 
         function delayedAlert() {
-            timeoutID = window.setTimeout(reOrder, 10000);
+            timeoutID = window.setTimeout(reOrder, 20000);
         }
 
         function reOrder() {
