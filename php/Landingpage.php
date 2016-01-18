@@ -1,5 +1,26 @@
 <?php
 session_start();
+
+
+function returnStats($subjectID){
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "MyNewPass";
+    $dbname ="Playlist";
+
+    $conn = new mysqli($servername, $username, $password,$dbname);
+    $countAuthorsQuery = "select count(distinct author_id) as authorCount from video_tbl where subject_id=$subjectID;";
+    $countAuthor = $conn->query($countAuthorsQuery)->fetch_assoc()['authorCount'];
+    $countVideosQuery =  "select count(video_id) as videoCount from video_tbl where subject_id=$subjectID;";
+    $countVideos = $conn->query($countVideosQuery)->fetch_assoc()['videoCount'];
+    $conn->close(); // find a way to open one connectio and fire multiple queries
+    return array($countAuthor,$countVideos);
+
+}
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,81 +97,81 @@ session_start();
                     <ul class="collapse collapseable" id="collapse-ProgLanguages">
                         <li>
                             <a href="#">Java
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"><?php echo returnStats(1001)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"><?php echo returnStats(1001)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">C/C++
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1002)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1002)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">Python
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1003)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1003)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">VB .NET
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1004)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1004)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">PHP
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1005)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1005)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">Ruby
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1006)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1006)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">R
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1007)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1007)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">Matlab
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1008)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1008)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">Android
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1009)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1009)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
                         <li>
                             <a href="#">Swift
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1010)[1];?></span>
                                 <span class="glyphicon glyphicon-facetime-video pull-right" aria-hidden="true"></span>
-                                <span class="label  pull-right hidden-xs hidden-md"> 10</span>
+                                <span class="label  pull-right hidden-xs hidden-md"> <?php echo returnStats(1010)[0];?></span>
                                 <span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
                             </a>
                         </li>
@@ -710,7 +731,7 @@ session_start();
                                 //setcookie("PHPSESSID", "", 1);
                             }
                             //$logout = 'http://localhost/Contact.html';
-                            $_SESSION['email'] = array_key_exists('email', $_SESSION) ? $_SESSION['email'] : 'abc@gmail.com';
+                            $_SESSION['email'] = array_key_exists('email', $_SESSION) ? $_SESSION['email'] : 'Learner !';
                             echo '<li id="welcome">Welcome '.$_SESSION['name'].'</li>';
                             //fire sql query to check if user exists
                             $servername = "127.0.0.1";
