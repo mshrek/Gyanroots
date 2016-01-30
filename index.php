@@ -18,13 +18,16 @@ session_start();
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./app/fbapp/fb.js"></script>
     <style>
 
         .LoginForm{
-            border:1px solid grey;
-            border-radius:10px;
-            margin-top:20px;
+            border:none;
+            margin-top:-7px;
         }
         textarea{
             height:120px;
@@ -33,26 +36,43 @@ session_start();
         form{
             padding-bottom:20px;
         }
+        .loginpage{
+            background-image: url("images/gyanrootslogin1.jpg");
+            width:100%;
+            height:800px;
+            background-size: cover;
+            padding-right:50px;
+            padding-top :200px;
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+            color:#fff;
+        }
     </style>
+
+    <script type="text/javascript">
+        $('.loginpage').css("height",$(window).height());
+        $('.loginpage').css("width",$(window).width());
+    </script>
 </head>
 
 
 <body>
-<div class="container">
+<div class="container loginpage">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3 LoginForm">
-            <form method="post">
-                <div class="pull-left col-md-offset-5" id="sidebar">
-                  <div class="fb-login-button btn-lg"  data-scope="public_profile,email" onlogin="checkLoginState();"></div>
+        <div class="pull-left col-xs-offset-4">
+            <h3><span style="font-weight: bold;font-size: 1.15em;padding-left:40px;">Software learning made easy !</span></h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <br/>
+    <div class="row">
+        <span class="LoginForm">
+                <div class="pull-left col-xs-offset-6">
+                  <div class="fb-login-button" size="xlarge" data-scope="public_profile,email" onlogin="checkLoginState();"></div>
                 </div>
-            </form>
+        </span>
         </div>
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="http://code.jquery.com/jquery.js"></script>
-<!-- Bootstrap JavaScript -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
-</html
+</html>

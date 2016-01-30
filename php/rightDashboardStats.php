@@ -28,8 +28,8 @@ else {
 
     $sqlquery= "select a.view_count as viewcount, ifnull(b.audio_rating,0) as audiorating, ifnull(b.video_rating,0) as videorating,
                 ifnull(b.content_rating,0) as contentrating, ifnull(b.fav_rating_flag,0) as favrating
-                from video_tbl a left outer join user_video_tbl b on a.video_id = b.video_id
-                where a.sort_id = ".$_POST["id"]." and a.author_id = ".$_POST["authid"]." and b.user_id = ".$userID['user_id'].";";
+                from video_tbl a left outer join (select * from user_video_tbl where user_id = ".$userID['user_id'].") b on a.video_id = b.video_id
+                where a.sort_id = ".$_POST["id"]." and a.author_id = ".$_POST["authid"]." and a.subject_id = ".$_POST["subjectID"].";";
 
     $results = $conn->query($sqlquery);
     if ($results->num_rows  > 0) {

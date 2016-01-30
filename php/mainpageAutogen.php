@@ -7,18 +7,24 @@ session_start();
  * Time: 1:45 PM
  */
 
+$rest_json = file_get_contents("php://input");
+parse_str($rest_json,$_POST);
+$_SESSION['subjectID'] = array_key_exists('subjectID', $_SESSION) ? $_POST['subjectID'] : 1001;
+//$_SESSION['subjectID'] = array_key_exists('subjectID', $_SESSION) ? $_GET['subjectID'] : 1001;
+
 $servername = "127.0.0.1";
 $username = "root";
 $password = "MyNewPass";
 $dbname ="Playlist";
-
+//$_SESSION['subjectID']=1001;
 $conn = new mysqli($servername, $username, $password,$dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 else {
-    $sqlquery = "SELECT distinct author_id ,author_name,image_url from author_tbl;";
+    //$sqlquery = "SELECT distinct a.author_id ,a.author_name,a.image_url from author_tbl a author_subject_tbl b where a.author_id = b.author_id;";
+    $sqlquery = "SELECT distinct a.author_id ,a.author_name,a.image_url from author_tbl a, author_subject_tbl b where a.author_id = b.author_id and b.subject_id= ".$_SESSION['subjectID'].";";
     $result = $conn->query($sqlquery);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -37,7 +43,7 @@ else {
             echo '</h5>';
 
             //titlebar
-            echo '<table class="table table-condensed display tablesorter playList" id="'.$row['author_id'].'" cellspacing="0" width="100%" id="leftdashboardtable'.$row['author_id'].'">';
+            echo '<table class="table table-condensed display tablesorter playList" id="'.$row['author_id'].$_SESSION['subjectID'].'" cellspacing="0" width="100%" id="leftdashboardtable'.$row['author_id'].$_SESSION['subjectID'].'">';
             echo '<thead>';
             echo '<tr>';
             echo '<th>#</th>';
@@ -71,7 +77,7 @@ else {
             //end of titlebar
 
             //body section begins
-            echo '<tbody id="playlistItems'.$row['author_id'].'">';
+            echo '<tbody id="playlistItems'.$row['author_id'].$_SESSION['subjectID'].'">';
             $authid=$row['author_id'];
             include("createTableOutput.php");
             echo '</tbody>';
@@ -89,16 +95,16 @@ else {
             echo '<header>';
                  echo '<h5>';
                  echo 'Video';
-                 echo '<span class="glyphicon glyphicon-heart pull-right favicon" id="favicon'.$authid.'" value=-1></span>';
+                 echo '<span class="glyphicon glyphicon-heart pull-right favicon" id="favicon'.$authid.$_SESSION['subjectID'].'" value=-1></span>';
                  echo '</h5>';
             echo '</header>';
 
             echo '<div class="comment-head-dash clearfix">';
                  echo '<div class="pull-left">Viewer hits</div>';
-                 echo '<div class="pull-right" id="viewcount'.$authid.'"></div>';
+                 echo '<div class="pull-right" id="viewcount'.$authid.$_SESSION['subjectID'].'"></div>';
             echo '</div>'; //end of clearfix
 
-            echo '<div id="videoPreview'.$authid.'">';
+            echo '<div id="videoPreview'.$authid.$_SESSION['subjectID'].'">';
             echo '</div>'; //end of videopreview
             echo '<div class="clearfix"></div>';
             echo '<br/>';
@@ -112,7 +118,7 @@ else {
 
             echo '<div class="clearfix"></div>';
 
-            echo '<div class="star-ratingA  col-xs-4 audioRating" id="audioRating'.$authid.'">';
+            echo '<div class="star-ratingA  col-xs-4 audioRating" id="audioRating'.$authid.$_SESSION['subjectID'].'">';
                  echo '<span class="fa fa-star-o" data-rating="1"></span>';
                  echo '<span class="fa fa-star-o" data-rating="2"></span>';
                  echo '<span class="fa fa-star-o" data-rating="3"></span>';
@@ -120,7 +126,7 @@ else {
                  echo '<span class="fa fa-star-o" data-rating="5"></span>';
                  echo '<input type="hidden" name="whatever" class="rating-value" value="3">';
             echo '</div>'; //end of audiorating
-            echo '<div class="star-ratingV col-xs-4 videoRating" id="videoRating'.$authid.'">';
+            echo '<div class="star-ratingV col-xs-4 videoRating" id="videoRating'.$authid.$_SESSION['subjectID'].'">';
                  echo '<span class="fa fa-star-o" data-rating="1"></span>';
                  echo '<span class="fa fa-star-o" data-rating="2"></span>';
                  echo '<span class="fa fa-star-o" data-rating="3"></span>';
@@ -128,7 +134,7 @@ else {
                  echo '<span class="fa fa-star-o" data-rating="5"></span>';
                  echo '<input type="hidden" name="whatever" class="rating-value" value="3">';
             echo '</div>';//end of videorating
-            echo '<div class="star-ratingC col-xs-4 contentRating" id="contentRating'.$authid.'">';
+            echo '<div class="star-ratingC col-xs-4 contentRating" id="contentRating'.$authid.$_SESSION['subjectID'].'">';
                  echo '<span class="fa fa-star-o" data-rating="1"></span>';
                  echo '<span class="fa fa-star-o" data-rating="2"></span>';
                  echo '<span class="fa fa-star-o" data-rating="3"></span>';
@@ -145,26 +151,6 @@ else {
 
         } //end of while loop
 
-        echo '<div class="row col-md-12 carousalWrapper">';
-              echo '<div>';
-                echo '<script charset="utf-8" type="text/javascript">';
-                echo 'amzn_assoc_ad_type = "responsive_search_widget";';
-                echo 'amzn_assoc_tracking_id = "wwwgyanrootsc-21";';
-                echo 'amzn_assoc_marketplace = "amazon";';
-                echo 'amzn_assoc_region = "IN";';
-                echo 'amzn_assoc_placement = "";';
-                echo 'amzn_assoc_search_type = "search_widget";';
-                echo 'amzn_assoc_width = 770;';
-                echo 'amzn_assoc_height = 220;';
-                echo 'amzn_assoc_default_search_category = "";';
-                echo 'amzn_assoc_default_search_key = "java books";';
-                echo 'amzn_assoc_theme = "light";';
-                echo 'amzn_assoc_bg_color = "E6E9ED";';
-                echo '</script>';
-                echo '<script src="//z-in.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1&MarketPlace=IN"></script>';
-              echo '</div>';
-        echo '</div>';
-        echo '<!--End of carousal-->';
     }
 }
 $result->free();

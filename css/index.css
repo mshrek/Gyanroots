@@ -123,3 +123,67 @@ tr th{
     padding:5px;
     color:#fff;
 }
+
+.aboutGyanroots{
+    font-family: Monotype-Corsiva, Calibri, Candara, Segoe, Optima, Arial, sans-serif;
+    letter-spacing: 1px;
+    line-height: 28px;
+    font-size: 1.2em;
+    color:#2F4050;
+    padding-left:10px;
+}
+
+.aboutBody{
+    margin-top:14px;
+    background-color: #fff;
+    font-size:15px;
+    width:97%;
+    height:550px;
+    margin:20px;
+    border-top:4px #e7eaec solid;
+    padding-right:30px;
+    background-color: #edf2f7;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+}
+
+.listItems{
+    padding-left:20px;
+}
+
+.aboutfooter{
+    margin:40px;
+}
+
+.likeMyWork{
+    padding:10px;
+    margin-left:20px;
+    width : 700px;
+    font-size: .8em;
+    font-family: Monotype-Corsiva, Calibri, Candara, Segoe, Optima, Arial, sans-serif;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background-color: #e8f9fc;
+    color: #293846;
+    margin-top:40px;
+}
+
+#side-menu ul li a:hover{
+    background-color : #1cc394;
+}
+
+#side-menu ul li ul li a:hover{
+    color : #2aabd2;
+    background-color: #2f4050 !important;
+}
+
+.lessgap{
+    margin:2px !important;
+    padding:3px !important;
+}
+
+.progress-bar.animate {
+    width: 100%;
+}

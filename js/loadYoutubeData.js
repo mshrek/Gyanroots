@@ -3,7 +3,7 @@
  */
 
 if (typeof jQuery == "undefined"){
-    alert('Jquery is not loaded');
+    console.log('Jquery is not loaded');
 } else {
     $(document).ready(function () {
        // alert('dom is ready now...');
@@ -84,38 +84,42 @@ if (typeof jQuery == "undefined"){
                     function (data) {
 
                         $.each(data.items, function (i, item) {
+                            nextPageToken = data.nextPageToken;
                             playListName = item.snippet.title;
                             playListid = item.id;
                             if(playListName==playlistname) {
                                 console.log(item);
                                 console.log(playlistname+' play list found !');
-                                getPlayListItems(playListid,reOrder);
+                                getPlayListItems(playListid,'');
                             }
                         })
                     }
                 );
             }
 
-            function getPlayListItems(_playListid) {
+            function getPlayListItems(_playListid,PageToken) {
 
                 $.get("https://www.googleapis.com/youtube/v3/playlistItems", {
                         part: 'snippet',
                         maxResults: maxrecords,
                         playlistId: _playListid,
-                        pageToken:'',
+                        pageToken: PageToken,
                         key: youtubekey
                     },
 
                     function (data) {
 
                         $.each(data.items, function (i, item) {
-                            console.log(item);
                             videoId = item.snippet.resourceId.videoId;
                             getStats(videoId, index);
                             index += 1;
                         })
 
-
+                        nextPageToken = data.nextPageToken;
+                        console.log("Nextpage token = " + nextPageToken);
+                        if(nextPageToken !=undefined){
+                            getPlayListItems(_playListid,nextPageToken);
+                        }
                     }
                 );
             }
@@ -140,7 +144,6 @@ if (typeof jQuery == "undefined"){
                             comments = item.statistics.commentCount;
                             viewcount = item.statistics.viewCount;
                             publishedAt = item.snippet.publishedAt;
-                            console.log("Next page token=" + item.nextPageToken);
                             postParams(vidTitle, duration, likes, dislikes, authorname, authorid, viewcount, videolink, comments, publishedAt,subjectID);
                         })
                     }
@@ -149,7 +152,7 @@ if (typeof jQuery == "undefined"){
 
                 //function to send data into sql
                 function postParams(vidTitle, duration, likes, dislikes,authorname,authorid,viewcount,videolink,comments,publishedAt,subjectID) {
-                    $.post("../php/insertPlayListInfo.php", {
+                    $.post("../phpAdmin/insertPlayListInfo.php", {
                             ptitle: "\'" + vidTitle + "\'",
                             pduration: "\'" + duration + "\'",
                             plikes: likes,
@@ -185,7 +188,7 @@ if (typeof jQuery == "undefined"){
         function reOrder() {
 
                 alert("Reordering to be done..");
-                $.get("../php/reOrderIndexes.php", function (data) {
+                $.get("../phpAdmin/reOrderIndexes.php", function (data) {
                     alert("Reordering done successfully");
                 });
         }

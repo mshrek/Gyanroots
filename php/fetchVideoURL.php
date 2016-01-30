@@ -21,12 +21,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 else {
-    $sqlquery = "SELECT video_url from video_tbl where sort_id=".$_POST["id"]." and author_id = ".$_POST["authid"].";";
+    $sqlquery = "SELECT video_url from video_tbl where sort_id=".$_POST["id"]." and author_id = ".$_POST["authid"]." and subject_id = ".$_POST["subjectID"].";";
 
     //echo $sqlquery;
     $results = $conn->query($sqlquery);
 
-//echo ($result);
     if ($results->num_rows > 0) {
         while ($rows = $results->fetch_assoc()) {
             echo '<iframe src="http://www.youtube.com/embed/'.$rows['video_url'].'" id='.$_POST["authid"].' width="100%" height="302px" frameborder="1" allowfullscreen></iframe>';

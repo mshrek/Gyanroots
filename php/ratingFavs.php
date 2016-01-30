@@ -19,7 +19,7 @@ $ratingfor=$_POST['ratingfor'];
 $value=$_POST['value'];
 $elementID=$_POST['elementID'];
 $authID=$_POST['authid'];
-
+$subjectID = $_POST['subjectID'];
 $conn = new mysqli($servername, $username, $password,$dbname);
 
 if ($conn->connect_error) {
@@ -30,7 +30,7 @@ else {
     $userIDResult=$conn->query($findUserIDQuery);
     $userID=$userIDResult->fetch_assoc();
     echo "emailId = ".$_SESSION['email']." userid = ".$userID['user_id']."\r\n";
-    $findVideoIDQuery = "SELECT video_id from video_tbl where author_id = ".$authID." and sort_id = ".$elementID.";";
+    $findVideoIDQuery = "SELECT video_id from video_tbl where author_id = ".$authID." and sort_id = ".$elementID." and subject_id = ".$subjectID.";";
     $videoIDResult=$conn->query($findVideoIDQuery);
     $videoID=$videoIDResult->fetch_assoc();
     echo "videoID = ".$videoID['video_id']."\r\n";
@@ -49,7 +49,7 @@ else {
     }
     else {
         echo "record found, entered here"."\r\n";
-        $sqlquery2 = "UPDATE user_video_tbl SET $ratingfor = $value WHERE video_id = ".$videoID['video_id']." and user_id = ".$userID['user_id'].";";
+        $sqlquery2 = "UPDATE user_video_tbl SET $ratingfor = $value WHERE video_id = ". $videoID['video_id'] ." and user_id = ". $userID['user_id'] .";";
         $result2 = $conn->query($sqlquery2);
         echo " update query = ".$sqlquery2."\r\n";
         echo " result of update query = ".$result2."\r\n";

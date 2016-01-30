@@ -17,6 +17,7 @@ parse_str($rest_json,$_POST);
 $elementID=$_POST['elementID'];
 $value=$_POST["value"];
 $authid=$_POST["authid"];
+$subjectID = $_POST["subjectID"];
 
 $conn = new mysqli($servername, $username, $password,$dbname);
 
@@ -28,7 +29,7 @@ else {
     $userIDResult=$conn->query($findUserIDQuery);
     $userID=$userIDResult->fetch_assoc();
     echo "emailId = ".$_SESSION['email']." userid = ".$userID['user_id']."\r\n";
-    $findVideoIDQuery = "SELECT video_id from video_tbl where author_id = ".$authid." and sort_id = ".$elementID.";";
+    $findVideoIDQuery = "SELECT video_id from video_tbl where author_id = ".$authid." and sort_id = ".$elementID." and subject_id = ".$subjectID.";";
     $videoIDResult=$conn->query($findVideoIDQuery);
     $videoID=$videoIDResult->fetch_assoc();
     echo "videoID = ".$videoID['video_id']."\r\n";
@@ -48,21 +49,20 @@ else {
     else {
         echo "record found, entered here"."\r\n";
         $sqlquery2 = "UPDATE user_video_tbl b right outer join video_tbl a on a.video_id = b.video_id
-                      SET b.broken_link_flag = $value WHERE a.sort_id = $elementID and a.author_id = $authid and user_id = ".$userID['user_id'].";";
+                      SET b.broken_link_flag = $value WHERE a.sort_id = $elementID and a.author_id = $authid and a.subject_id = $subjectID and user_id = ".$userID['user_id'].";";
         $result2 = $conn->query($sqlquery2);
         echo " update query = ".$sqlquery2."\r\n";
         echo " result of update query = ".$result2."\r\n";
     }
 
     if ($result1 || $result2) {
-        echo "Updation done successfully for " . $ratingfor . " element "." and author id =".$authid."\r\n";
+        echo "Updation done successfully for " . $ratingfor . " element "." and author id =".$authid." and subject = ".$subjectID."\r\n";
     } else {
-        echo "Updation was not done successfully for " . $ratingfor . " element "." and author id =".$authid."\r\n";
+        echo "Updation was not done successfully for " . $ratingfor . " element "." and author id = ".$authid." and subject = ".$subjectID."\r\n";
     }
 }
 $userIDResult->free();
 $videoIDResult->free();
 $checkRecordExistsQueryResult->free();
-$results->free();
 $conn->close();
 ?>

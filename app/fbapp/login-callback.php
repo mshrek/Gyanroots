@@ -34,7 +34,7 @@ if (isset($accessToken)) {
     // When validation fails or other local issues
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
   }
-
+    $_SESSION['fblogin'] = $profile['id'];
     $_SESSION['name'] = $profile['name'];
     $_SESSION['firstname'] = $profile['first_name'];
     $_SESSION['lastname'] = $profile['last_name'];
